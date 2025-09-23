@@ -1,0 +1,161 @@
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Kraal and Barn" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjMiIGZpbGw9IiM0YTdjNTkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yNSAxNWMtNS41MjMgMC0xMCA0LjQ3Ny0xMCAxMHM0LjQ3NyAxMCAxMCAxMCAxMC00LjQ3NyAxMC0xMC00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiNmZmZmZmYiLz4KPHBhdGggZD0iTTM1IDM1YzAgNS41MjMtNC40NzcgMTAtMTAgMTBzLTEwLTQuNDc3LTEwLTEwIDQuNDc3LTEwIDEwLTEwIDEwIDQuNDc3IDEwIDEweiIgZmlsbD0iIzhnYjk5NiIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSI1IiBmaWxsPSIjZjhjNjMwIi8+Cjwvc3ZnPg=='">
+                <h1>Kraal and Barn</h1>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li id="admin-link" class="hidden"><a href="admin/dashboard.html">Admin</a></li>
+                </ul>
+            </nav>
+
+            <div class="auth-buttons" id="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Sign In</a>
+                <a href="register.html" class="btn btn-primary">Register</a>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-dropdown">
+                    <span id="user-name">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="profile.html">Profile</a>
+                        <a href="orders.html">Orders</a>
+                        <button id="logout-btn">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="admin-link-mobile" class="hidden"><a href="admin/dashboard.html">Admin</a></li>
+                <li class="auth-buttons-mobile">
+                    <a href="login.html" class="btn btn-outline">Sign In</a>
+                    <a href="register.html" class="btn btn-primary">Register</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <style>
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .user-dropdown span {
+            margin-right: 0.5rem;
+            font-weight: 500;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 0.5rem;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a,
+        .dropdown-menu button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: none;
+            background: none;
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu button:hover {
+            background-color: var(--light-color);
+        }
+
+        .user-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .auth-buttons-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav:not(.mobile-menu nav) {
+                display: none;
+            }
+
+            .auth-buttons:not(.auth-buttons-mobile) {
+                display: none;
+            }
+
+            .user-menu {
+                display: none;
+            }
+
+            .mobile-menu.hidden {
+                display: none;
+            }
+
+            .mobile-menu:not(.hidden) {
+                display: block;
+            }
+        }
+    </style>
+</header>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kraal and Barn - Farm Products</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title">Welcome to Kraal and Barn</h1>
+                <p id="hero-subtitle">Discover the finest farm products - naturally grown and sustainably produced</p>
+                <a href="products.html" class="btn btn-primary">Explore Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div id="featured-products-grid" class="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+            <div class="text-center">
+                <a href="products.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Our Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="Honey">
+                    <div class="category-icon">
+                        <i class="fas fa-honey-pot"></i>
+                    </div>
+                    <h3>Honey</h3>
+                    <p>Pure, natural honey from local beehives</p>
+                </div>
+                <div class="category-card" data-category="Rabbits">
+                    <div class="category-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>Rabbits</h3>
+                    <p>Healthy rabbits raised in spacious environments</p>
+                </div>
+                <div class="category-card" data-category="Goats">
+                    <div class="category-icon">
+                        <i class="fas fa-cloud-meatball"></i>
+                    </div>
+                    <h3>Goats</h3>
+                    <p>Quality goats for meat and milk production</p>
+                </div>
+                <div class="category-card" data-category="Fish">
+                    <div class="category-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Fish</h3>
+                    <p>Freshwater fish farmed in clean conditions</p>
+                </div>
+                <div class="category-card" data-category="Vegetables">
+                    <div class="category-icon">
+                        <i class="fas fa-carrot"></i>
+                    </div>
+                    <h3>Vegetables</h3>
+                    <p>Organic vegetables grown without pesticides</p>
+                </div>
+                <div class="category-card" data-category="Poultry">
+                    <div class="category-icon">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <h3>Poultry</h3>
+                    <p>Free-range chickens and fresh eggs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Kraal and Barn</h2>
+                    <p>We are a family-owned farm dedicated to sustainable agriculture and providing high-quality, natural products to our community. Established in 2005, we've grown from a small homestead to a thriving farm offering a variety of products.</p>
+                    <p>Our mission is to promote sustainable farming practices while delivering fresh, healthy products directly to our customers.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/farm-about.jpg" alt="Our Farm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Load components
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponents();
+            loadFeaturedProducts();
+            setupCategoryCards();
+            
+            // Load theme settings
+            loadThemeSettings();
+        });
+
+        function setupCategoryCards() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    window.location.href = `products.html?category=${category}`;
+                });
+            });
+        }
+
+        async function loadFeaturedProducts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/products?featured=true&limit=4`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const productsGrid = document.getElementById('featured-products-grid');
+                    productsGrid.innerHTML = result.data.products.map(product => `
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="${product.images[0]?.url || 'assets/images/placeholder.jpg'}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3>${product.name}</h3>
+                                <p class="product-price">$${product.price}</p>
+                                <button class="btn btn-outline view-product" data-id="${product._id}">View Details</button>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Add event listeners to view buttons
+                    document.querySelectorAll('.view-product').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const productId = this.getAttribute('data-id');
+                            window.location.href = `product-details.html?id=${productId}`;
+                        });
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading featured products:', error);
+            }
+        }
+    </script>
+</body>
+</html>

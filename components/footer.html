@@ -1,0 +1,230 @@
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">
+                    <img src="assets/images/logo-white.png" alt="Kraal and Barn" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjMiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzhnYjk5NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yNSAxNWMtNS41MjMgMC0xMCA0LjQ3Ny0xMCAxMHM0LjQ3NyAxMCAxMCAxMCAxMC00LjQ3NyAxMC0xMC00LjQ3Ny0xMC0xMC0xMHoiIGZpbGw9IiM4Z2I5OTYiLz4KPHBhdGggZD0iTTM1IDM1YzAgNS41MjMtNC40NzcgMTAtMTAgMTBzLTEwLTQuNDc3LTEwLTEwIDQuNDc3LTEwIDEwLTEwIDEwIDQuNDc3IDEwIDEweiIgZmlsbD0iI2Y4YzYzMCIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSI1IiBmaWxsPSIjNGE3YzU5Ii8+Cjwvc3ZnPg=='">
+                    <h3>Kraal and Barn</h3>
+                </div>
+                <p>Providing fresh, sustainable farm products since 2005. We are committed to quality and sustainability.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="products.html">Products</a></p>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="privacy.html">Privacy Policy</a></p>
+                <p><a href="terms.html">Terms of Service</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Product Categories</h3>
+                <p><a href="products.html?category=Honey">Honey</a></p>
+                <p><a href="products.html?category=Rabbits">Rabbits</a></p>
+                <p><a href="products.html?category=Goats">Goats</a></p>
+                <p><a href="products.html?category=Fish">Fish</a></p>
+                <p><a href="products.html?category=Vegetables">Vegetables</a></p>
+                <p><a href="products.html?category=Poultry">Poultry</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agricultural District</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> info@kraalandbarn.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</p>
+                
+                <div class="newsletter">
+                    <h4>Subscribe to Newsletter</h4>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Kraal and Barn. All rights reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for sustainable farming</p>
+        </div>
+    </div>
+
+    <style>
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-section i {
+            width: 20px;
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .newsletter form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter .btn {
+            white-space: nowrap;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 2rem 0 1rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section i {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+        }
+    </style>
+
+    <script>
+        document.getElementById('newsletter-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/newsletter/subscribe`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (response.ok) {
+                    App.showNotification('Successfully subscribed to newsletter!');
+                    e.target.reset();
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            } catch (error) {
+                App.showNotification('Subscription failed. Please try again.', 'error');
+            }
+        });
+    </script>
+</footer>

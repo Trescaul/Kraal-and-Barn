@@ -1,0 +1,7 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="250" cy="250" r="230" fill="#4a7c59" stroke="#8fb996" stroke-width="8"/>
+  <circle cx="250" cy="250" r="180" fill="#8fb996"/>
+  <circle cx="250" cy="250" r="130" fill="#f8c630"/>
+  <circle cx="180" cy="180" r="40" fill="#4a7c59"/>
+  <text x="250" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="white">KRAAL & BARN</text>
+</svg>

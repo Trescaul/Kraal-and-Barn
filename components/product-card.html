@@ -1,0 +1,293 @@
+<div class="product-card">
+    <div class="product-image">
+        <img src="{{imageUrl}}" alt="{{productName}}" onerror="this.src='assets/images/placeholder.jpg'">
+        {{#if isFeatured}}
+        <span class="product-badge">Featured</span>
+        {{/if}}
+    </div>
+    
+    <div class="product-info">
+        <h3>{{productName}}</h3>
+        <p class="product-description">{{description}}</p>
+        
+        <div class="product-meta">
+            <span class="product-category">{{category}}</span>
+            <span class="product-stock">
+                <span class="stock-indicator {{stockStatus}}"></span>
+                {{stockText}}
+            </span>
+        </div>
+        
+        <p class="product-price">{{price}}</p>
+        
+        <div class="product-actions">
+            <button class="btn btn-outline view-product" data-id="{{productId}}">
+                View Details
+            </button>
+            
+            {{#if isAdmin}}
+            <button class="btn btn-outline edit-product" data-id="{{productId}}">
+                <i class="fas fa-edit"></i>
+            </button>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background-color: var(--accent-color);
+        color: var(--dark-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .product-info {
+        padding: 1.5rem;
+    }
+
+    .product-info h3 {
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
+    .product-description {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .product-category {
+        background-color: var(--light-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-weight: 500;
+        color: var(--primary-color);
+    }
+
+    .product-stock {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-light);
+    }
+
+    .stock-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .stock-indicator.in-stock {
+        background-color: var(--success-color);
+    }
+
+    .stock-indicator.low-stock {
+        background-color: var(--warning-color);
+    }
+
+    .stock-indicator.out-of-stock {
+        background-color: var(--error-color);
+    }
+
+    .product-price {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .product-actions .btn {
+        flex: 1;
+    }
+
+    .product-actions .edit-product {
+        flex: 0 0 auto;
+        width: auto;
+        padding: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+        .product-actions {
+            flex-direction: column;
+        }
+
+        .product-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+    }
+</style>
+
+<script>
+    class ProductCard extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({ mode: 'open' });
+        }
+
+        connectedCallback() {
+            this.render();
+            this.addEventListeners();
+        }
+
+        static get observedAttributes() {
+            return ['product-id', 'product-name', 'description', 'category', 'price', 'image-url', 'stock-quantity', 'is-featured', 'is-admin'];
+        }
+
+        attributeChangedCallback() {
+            this.render();
+        }
+
+        render() {
+            const productId = this.getAttribute('product-id') || '';
+            const productName = this.getAttribute('product-name') || 'Product Name';
+            const description = this.getAttribute('description') || 'No description available';
+            const category = this.getAttribute('category') || 'Uncategorized';
+            const price = this.getAttribute('price') || '$0.00';
+            const imageUrl = this.getAttribute('image-url') || 'assets/images/placeholder.jpg';
+            const stockQuantity = parseInt(this.getAttribute('stock-quantity') || '0');
+            const isFeatured = this.getAttribute('is-featured') === 'true';
+            const isAdmin = this.getAttribute('is-admin') === 'true';
+
+            const stockStatus = this.getStockStatus(stockQuantity);
+            const stockText = this.getStockText(stockQuantity);
+
+            this.shadowRoot.innerHTML = `
+                <style>
+                    /* Include the CSS from above */
+                    ${document.querySelector('[data-product-card-styles]')?.textContent || ''}
+                </style>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${imageUrl}" alt="${productName}" onerror="this.src='assets/images/placeholder.jpg'">
+                        ${isFeatured ? '<span class="product-badge">Featured</span>' : ''}
+                    </div>
+                    
+                    <div class="product-info">
+                        <h3>${productName}</h3>
+                        <p class="product-description">${description}</p>
+                        
+                        <div class="product-meta">
+                            <span class="product-category">${category}</span>
+                            <span class="product-stock">
+                                <span class="stock-indicator ${stockStatus}"></span>
+                                ${stockText}
+                            </span>
+                        </div>
+                        
+                        <p class="product-price">${price}</p>
+                        
+                        <div class="product-actions">
+                            <button class="btn btn-outline view-product" data-id="${productId}">
+                                View Details
+                            </button>
+                            
+                            ${isAdmin ? `
+                            <button class="btn btn-outline edit-product" data-id="${productId}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        getStockStatus(quantity) {
+            if (quantity === 0) return 'out-of-stock';
+            if (quantity < 10) return 'low-stock';
+            return 'in-stock';
+        }
+
+        getStockText(quantity) {
+            if (quantity === 0) return 'Out of stock';
+            if (quantity < 10) return `${quantity} left`;
+            return 'In stock';
+        }
+
+        addEventListeners() {
+            this.shadowRoot.addEventListener('click', (e) => {
+                const viewBtn = e.target.closest('.view-product');
+                const editBtn = e.target.closest('.edit-product');
+
+                if (viewBtn) {
+                    this.dispatchEvent(new CustomEvent('view-product', {
+                        detail: { productId: viewBtn.dataset.id },
+                        bubbles: true
+                    }));
+                }
+
+                if (editBtn) {
+                    this.dispatchEvent(new CustomEvent('edit-product', {
+                        detail: { productId: editBtn.dataset.id },
+                        bubbles: true
+                    }));
+                }
+            });
+        }
+    }
+
+    customElements.define('product-card', ProductCard);
+</script>

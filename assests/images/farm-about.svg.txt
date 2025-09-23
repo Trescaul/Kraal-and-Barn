@@ -1,0 +1,12 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#e8f5e8"/>
+  <rect x="100" y="300" width="600" height="200" fill="#8d6e63"/>
+  <rect x="320" y="200" width="160" height="200" fill="#a1887f"/>
+  <rect x="360" y="250" width="80" height="60" fill="#4a7c59"/>
+  <path d="M200,300 L200,150 Q400,50 600,150 L600,300" fill="#4caf50"/>
+  <circle cx="250" cy="220" r="30" fill="white" stroke="#ffd54f" stroke-width="5"/>
+  <path d="M150,400 L150,500" stroke="#795548" stroke-width="10" fill="none"/>
+  <path d="M150,500 L100,550" stroke="#795548" stroke-width="10" fill="none"/>
+  <path d="M150,500 L200,550" stroke="#795548" stroke-width="10" fill="none"/>
+  <text x="400" y="550" text-anchor="middle" font-family="Arial" font-size="20" fill="#4a7c59">Our Farm</text>
+</svg>

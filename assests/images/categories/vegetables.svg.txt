@@ -1,0 +1,9 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#e8f5e9"/>
+  <circle cx="250" cy="180" r="40" fill="#4caf50"/>
+  <circle cx="350" cy="180" r="35" fill="#ff9800"/>
+  <path d="M200,220 Q250,250 300,240 Q350,250 400,220" fill="#8bc34a" stroke="#4caf50" stroke-width="2"/>
+  <path d="M220,240 L220,280" stroke="#795548" stroke-width="3"/>
+  <path d="M380,240 L380,280" stroke="#795548" stroke-width="3"/>
+  <text x="300" y="320" text-anchor="middle" font-family="Arial" font-size="24" fill="#4a7c59">VEGETABLES</text>
+</svg>
