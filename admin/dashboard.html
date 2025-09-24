@@ -1,204 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Kraal and Barn</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Kraal and Barn</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body class="admin-dashboard">
-    <!-- Admin Header -->
-    <header class="admin-header">
-        <div class="container">
-            <div class="admin-header-content">
-                <div class="logo">
-                    <img src="../assets/images/logo.png" alt="Kraal and Barn">
-                    <h1>Admin Dashboard</h1>
-                </div>
-                <nav class="admin-nav">
-                    <a href="../index.html" class="nav-link">View Site</a>
-                    <button id="admin-logout" class="btn btn-outline">Logout</button>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <!-- Admin Sidebar -->
-    <aside class="admin-sidebar">
-        <nav class="sidebar-nav">
-            <a href="#dashboard" class="nav-item active" data-section="dashboard">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="#products" class="nav-item" data-section="products">
-                <i class="fas fa-box"></i>
-                <span>Products</span>
-            </a>
-            <a href="#categories" class="nav-item" data-section="categories">
-                <i class="fas fa-tags"></i>
-                <span>Categories</span>
-            </a>
-            <a href="#settings" class="nav-item" data-section="settings">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
-            </a>
-            <a href="#users" class="nav-item" data-section="users">
-                <i class="fas fa-users"></i>
-                <span>Users</span>
-            </a>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container">
+      <div class="admin-header-content">
+        <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="logo">
+          <img src="../assets/images/logo.png" alt="Kraal and Barn Company Logo">
+          <h1>Admin Dashboard</h1>
+        </div>
+        <nav class="admin-nav">
+          <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+          </button>
+          <a href="../index.html" class="nav-link">View Site</a>
+          <button id="admin-logout" class="btn btn-outline" aria-label="Logout">Logout</button>
         </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="admin-main">
-        <div class="container">
-            <!-- Dashboard Section -->
-            <section id="dashboard-section" class="admin-section active">
-                <h2>Dashboard Overview</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="total-products">0</h3>
-                            <p>Total Products</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="total-users">0</h3>
-                            <p>Total Users</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="out-of-stock">0</h3>
-                            <p>Out of Stock</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3 id="active-users">0</h3>
-                            <p>Active Users</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recent-section">
-                    <h3>Recent Products</h3>
-                    <div id="recent-products" class="recent-list">
-                        <!-- Recent products will be loaded here -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Products Section -->
-            <section id="products-section" class="admin-section">
-                <div class="section-header">
-                    <h2>Product Management</h2>
-                    <button class="btn btn-primary" id="add-product-btn">
-                        <i class="fas fa-plus"></i> Add Product
-                    </button>
-                </div>
-                <div class="products-table-container">
-                    <table class="admin-table" id="products-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Products will be loaded dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Settings Section -->
-            <section id="settings-section" class="admin-section">
-                <h2>Site Settings</h2>
-                <form id="settings-form">
-                    <div class="form-section">
-                        <h3>General Settings</h3>
-                        <div class="form-group">
-                            <label for="site-name">Site Name</label>
-                            <input type="text" id="site-name" name="siteName">
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3>Hero Banner</h3>
-                        <div class="form-group">
-                            <label for="hero-title">Title</label>
-                            <input type="text" id="hero-title" name="heroBanner.title">
-                        </div>
-                        <div class="form-group">
-                            <label for="hero-subtitle">Subtitle</label>
-                            <textarea id="hero-subtitle" name="heroBanner.subtitle"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3>Theme Colors</h3>
-                        <div class="color-picker-group">
-                            <div class="form-group">
-                                <label for="primary-color">Primary Color</label>
-                                <input type="color" id="primary-color" name="theme.primaryColor">
-                            </div>
-                            <div class="form-group">
-                                <label for="secondary-color">Secondary Color</label>
-                                <input type="color" id="secondary-color" name="theme.secondaryColor">
-                            </div>
-                            <div class="form-group">
-                                <label for="accent-color">Accent Color</label>
-                                <input type="color" id="accent-color" name="theme.accentColor">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Save Settings</button>
-                </form>
-            </section>
-        </div>
-    </main>
-
-    <!-- Add Product Modal -->
-    <div id="add-product-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add New Product</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <form id="add-product-form">
-                <!-- Form content will be loaded dynamically -->
-            </form>
-        </div>
+      </div>
     </div>
+  </header>
 
-    <!-- Scripts -->
-    <script src="../js/app.js"></script>
-    <script src="../js/admin.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeAdminDashboard();
-        });
-    </script>
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar">
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="nav-item active" data-section="dashboard">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#products" class="nav-item" data-section="products">
+        <i class="fas fa-box"></i>
+        <span>Products</span>
+      </a>
+      <a href="#categories" class="nav-item" data-section="categories">
+        <i class="fas fa-tags"></i>
+        <span>Categories</span>
+      </a>
+      <a href="#settings" class="nav-item" data-section="settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </a>
+      <a href="#users" class="nav-item" data-section="users">
+        <i class="fas fa-users"></i>
+        <span>Users</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <div class="container">
+
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="admin-section active">
+        <h2>Dashboard Overview</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-box"></i></div>
+            <div class="stat-info">
+              <h3 id="total-products">0</h3>
+              <p>Total Products</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <h3 id="total-users">0</h3>
+              <p>Total Users</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="stat-info">
+              <h3 id="out-of-stock">0</h3>
+              <p>Out of Stock</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-info">
+              <h3 id="active-users">0</h3>
+              <p>Active Users</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-section">
+          <h3>Recent Products</h3>
+          <div id="recent-products" class="recent-list">
+            <!-- Recent products will be loaded here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="products-section" class="admin-section">
+        <div class="section-header">
+          <h2>Product Management</h2>
+          <button class="btn btn-primary" id="add-product-btn">
+            <i class="fas fa-plus"></i> Add Product
+          </button>
+        </div>
+        <div class="products-table-container">
+          <table class="admin-table" id="products-table">
+            <thead>
+              <tr>
+                <th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody><!-- Products loaded dynamically --></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Settings Section -->
+      <section id="settings-section" class="admin-section">
+        <h2>Site Settings</h2>
+        <form id="settings-form">
+          <div class="form-section">
+            <h3>General Settings</h3>
+            <div class="form-group">
+              <label for="site-name">Site Name</label>
+              <input type="text" id="site-name" name="siteName">
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Hero Banner</h3>
+            <div class="form-group">
+              <label for="hero-title">Title</label>
+              <input type="text" id="hero-title" name="heroBanner.title">
+            </div>
+            <div class="form-group">
+              <label for="hero-subtitle">Subtitle</label>
+              <textarea id="hero-subtitle" name="heroBanner.subtitle"></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Theme Colors</h3>
+            <div class="color-picker-group">
+              <div class="form-group">
+                <label for="primary-color">Primary Color</label>
+                <input type="color" id="primary-color" name="theme.primaryColor">
+              </div>
+              <div class="form-group">
+                <label for="secondary-color">Secondary Color</label>
+                <input type="color" id="secondary-color" name="theme.secondaryColor">
+              </div>
+              <div class="form-group">
+                <label for="accent-color">Accent Color</label>
+                <input type="color" id="accent-color" name="theme.accentColor">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Add Product Modal -->
+  <div id="add-product-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Product</h3>
+        <button class="close-modal" aria-label="Close Modal">&times;</button>
+      </div>
+      <form id="add-product-form"><!-- Form loaded dynamically --></form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/app.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeAdminDashboard();
+
+      // Sidebar toggle
+      const sidebar = document.querySelector('.admin-sidebar');
+      document.getElementById('sidebar-toggle').addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+      });
+
+      // Dark mode toggle
+      document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+      });
+    });
+  </script>
 </body>
 </html>
